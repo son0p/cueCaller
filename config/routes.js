@@ -39,7 +39,7 @@ module.exports.routes = {
     view: 'eventpage'
     },
   'get /song/:id': 'songController.find',
-//  'get /group2/:id': 'groupController.find'
+//'get /group2/:id': 'groupController.find'
   'get /group2': 'Group2Controller.findAll'
 
 
