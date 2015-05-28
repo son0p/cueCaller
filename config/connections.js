@@ -57,19 +57,19 @@
   * Run: npm install sails-mongo                                             *
   *                                                                          *
   ***************************************************************************/
-//  someMongodbServer: {
-//    adapter: 'sails-mongo',
-//    host: 'localhost',
-//    port: 27017,
-//     user: '',
-//     password: '',
-//    database: 'gruposSails'
-//  },
+ // someMongodbServer: {
+ //   adapter: 'sails-mongo',
+ //   host: 'localhost',
+ //   port: 27017,
+ //    user: '',
+ //    password: '',
+ //   database: 'gruposMedellin'
+ // }
 
 /*     mongodb: {
 	   adapter: 'sails-mongo',
 	    host:'localhost',
-	    user: 'cm_user',	
+	    user: 'cm_user',
             password: 'cm_password',
 	    port: 18394
 },*/
