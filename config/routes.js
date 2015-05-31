@@ -45,6 +45,7 @@ module.exports.routes = {
   'get /grupos/sinGenero': 'GruposController.sinGenero',
   'get /grupos/porGenero': 'GruposController.porGenero',
   'get /grupos/detalleGrupo/:id': 'GruposController.detalleGrupo',
+  'get /grupos/crear': 'GruposController.nuevo',
   'post /grupos/crear': 'GruposController.crear'
   //'get /group2': 'Group2Controller.findAll',
   //'get /group2/sinGenero': 'Group2Controller.sinGenero'
