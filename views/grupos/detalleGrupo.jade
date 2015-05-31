@@ -1,0 +1,11 @@
+extends ../layout
+block body
+  h1 Detalle
+  p #{id}
+  table
+    tbody
+      each grupos in groups
+        tr
+          td #{grupos.nombre}
+          td #{grupos.genero}
+          td #{grupos.id}

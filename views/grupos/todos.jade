@@ -1,0 +1,10 @@
+extends ../layout
+block body
+  h1 Grupos Medellin
+  table
+    tbody
+      each grupos in groups
+        tr
+          td #{grupos.nombre}
+          td #{grupos.genero}
+          td #{grupos.id}

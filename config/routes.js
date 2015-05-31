@@ -40,7 +40,15 @@ module.exports.routes = {
     },
   'get /song/:id': 'songController.find',
 //'get /group2/:id': 'groupController.find'
-  'get /group2': 'Group2Controller.findAll'
+
+  'get /grupos': 'GruposController.todos',
+  'get /grupos/sinGenero': 'GruposController.sinGenero',
+  'get /grupos/porGenero': 'GruposController.porGenero',
+  'get /grupos/detalleGrupo/:id': 'GruposController.detalleGrupo',
+  'post /grupos/crear': 'GruposController.crear'
+  //'get /group2': 'Group2Controller.findAll',
+  //'get /group2/sinGenero': 'Group2Controller.sinGenero'
+
 
 
   /***************************************************************************
