@@ -1,0 +1,16 @@
+extends ../layout
+block body
+  .jumbotron.hero-spacer
+    .row
+    h1 Fonseca
+      table.table
+        tbody
+          each cue in cues
+            tr
+              td
+                p #{cue.song}
+                  small #{cue.id}
+              td
+                form
+                  input.form-control(type="text", value="#{cue.setList}", name="setList")
+      input.btn.btn-lg.btn-success.btn-block(type="submit", value="Guardar", name="updateSet")

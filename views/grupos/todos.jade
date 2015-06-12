@@ -8,3 +8,7 @@ block body
           td #{grupos.nombre}
           td #{grupos.genero}
           td #{grupos.id}
+          td
+            a.btn.btn-sm.btn-success(href='/grupos/detalle/#{grupos.id}') Detalle
+            td __
+              a.btn.btn-sm.btn-danger(href='/grupos/destruir/#{grupos.id}') Borrar

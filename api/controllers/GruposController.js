@@ -12,6 +12,16 @@ module.exports = {
       res.view('grupos/todos', {groups : groups});
     });
   },
+   detalle : function(req, res){
+    Grupos.findOneById(req.param('id')).exec(function(err, groups){
+      res.view('grupos/detalle',{groups : groups});
+      });
+    },
+
+  destruir : function(req, res){
+    Grupos.destroy(req.param('id'));
+    sails.log(req.param('id')+" destruido");
+    },
 
   sinGenero :function(req, res){
     Grupos.find({genero:"NA"}).sort({nombre: 1}).exec(function(err, groups){
@@ -23,15 +33,10 @@ module.exports = {
     Grupos.find().sort({genero: 1}).exec(function(err, groups){
       res.view('grupos/porGenero', {groups : groups});
     });
-    },
-
-  detalleGrupo : function(req, res){
-    Grupos.findOneById(req.param('id')).exec(function(err, groups){
-      res.view('grupos/detalleGrupo',{groups : groups, id: req.param('id')});
-      });
-    },
-   nuevo : function(req, res, next){
-    res.view();
+  },
+  nuevo : function(req, res){
+    res.view('grupos/nuevo');
+    sails.log("nuevo");
     },
   crear : function(req, res){
     sails.log("entro");
@@ -40,7 +45,7 @@ module.exports = {
         sails.log.verbose(err);
         req.flash('message','Error');
         return res.send(err);
-        }
+      }
       res.json(grupo);
       });
     }

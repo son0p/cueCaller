@@ -1,0 +1,17 @@
+extends ../layout
+block body
+  .jumbotron.hero-spacer
+    .row
+      h1 Fonseca
+      table.table
+        tbody
+          each cue in cues
+            tr
+              td
+                h2   #{cue.song}
+                small #{cue.id}
+              td
+                -var json = JSON.stringify(cue.cue)
+                -var parse = JSON.parse(json)
+                  each val, key in parse
+                    .text-success #{key} <kbd> #{val}</kbd>

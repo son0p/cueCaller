@@ -35,18 +35,24 @@ module.exports.routes = {
   '/': {
     view: 'homepage'
   },
-  '/event': {
-    view: 'eventpage'
-    },
+  // '/event': {
+  //   view: 'eventpage'
+  //   },
   'get /song/:id': 'songController.find',
 //'get /group2/:id': 'groupController.find'
 
   'get /grupos': 'GruposController.todos',
   'get /grupos/sinGenero': 'GruposController.sinGenero',
   'get /grupos/porGenero': 'GruposController.porGenero',
-  'get /grupos/detalleGrupo/:id': 'GruposController.detalleGrupo',
+  'get /grupos/detalle/:id': 'GruposController.detalle',
   'get /grupos/crear': 'GruposController.nuevo',
-  'post /grupos/crear': 'GruposController.crear'
+  'get /grupos/crear': 'GruposController.crear',
+  'post /grupos/crear': 'GruposController.crear',
+  'post /grupos/nuevo': 'GruposController.nuevo',
+  'get /cues/todos': 'CuesController.todos',
+  'get /cues/editarSet': 'CuesController.editarSet',
+  'post /cues/editarSet': 'CuesController.updateSet'
+
   //'get /group2': 'Group2Controller.findAll',
   //'get /group2/sinGenero': 'Group2Controller.sinGenero'
 
