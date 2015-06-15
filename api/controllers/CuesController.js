@@ -23,10 +23,10 @@ module.exports = {
       });
     },
    update : function(req, res){
-     sails.log(req.param('setList'))
-    //  Cues.update(req.body).exec(function(err, cue){
-    //  res.render('cues/update/', {cues: cue});
-    // });
+     sails.log(req.body);
+      Cues.update(req.body).exec(function(err, cue){
+     res.render('cues/update/', {cues: cue});
+     });
     },
   editarSet : function(req, res){
     Cues.find().sort({setList: 1}).exec(function(err, cue){

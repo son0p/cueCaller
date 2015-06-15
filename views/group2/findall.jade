@@ -1,8 +1,10 @@
 extends ../layout
 block body
-  p hola
+  h1 Grupos Medellin
   table
     tbody
       each group2 in groups
         tr
           td #{group2.nombre}
+          td #{group2.genero}
+          td #{group2.id}
