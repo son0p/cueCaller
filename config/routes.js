@@ -50,6 +50,8 @@ module.exports.routes = {
   'post /grupos/crear': 'GruposController.crear',
   'post /grupos/nuevo': 'GruposController.nuevo',
   'get /cues/todos': 'CuesController.todos',
+  'get /cues/detalle': 'CuesController.detalle',
+  'get /cues/editarDetalle/:id': 'CuesController.editarDetalle',
   'get /cues/editarSet': 'CuesController.editarSet',
   'post /cues/editarSet': 'CuesController.updateSet'
 

@@ -1,0 +1,9 @@
+extends ../layout
+block body
+  h1 Detalle
+  .jumbotron.hero-spacer
+    form(role="form", method="POST", action="cues/update", name="update")
+      input.form-control(type="text", value="#{cues.talent}")
+      input.form-control(type="text", value="#{cues.song}")
+      input.form-control(type="text", value="#{cues.setList}")
+      input.btn.btn-sm.btn-primary.btn-block(type="submit", value="Guardar", name="crear")

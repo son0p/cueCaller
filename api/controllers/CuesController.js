@@ -22,6 +22,12 @@ module.exports = {
       res.view('cues/editarDetalle',{cues : cue});
       });
     },
+   update : function(req, res){
+     sails.log(req.param('setList'))
+    //  Cues.update(req.body).exec(function(err, cue){
+    //  res.render('cues/update/', {cues: cue});
+    // });
+    },
   editarSet : function(req, res){
     Cues.find().sort({setList: 1}).exec(function(err, cue){
       res.view('cues/editarSet', {cues: cue});
