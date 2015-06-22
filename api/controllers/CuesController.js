@@ -24,14 +24,26 @@ module.exports = {
     },
    updateDetalle : function(req, res){
      sails.log('entro UUpdate');
-     sails.log.verbose(req);
+     sails.log.verbose(req.body);
+     var cueOb ={
+       id : req.param('id'), // el req.param viene del name en la forma
+       talent : req.param('talent'),
+       setList : req.param('setList')
+        }
+// la anatomia de esto es findOne es la funcion, exec es el callback, los parametros de la funcion de callback son objetos, el uno es error, sino hubo un error el monta todo lo logrado por la funcion en el segundo parametro del callback
+       Cues.findOneById(req.param('id')).exec(function(err, cue){
+         if (err) {
+           sails.log.verbose("No se logró actualizar");
+           return res.send(err);
+         }
+          // underscore funciones comunes, voy al api de lodash.com que me hace merge de los dos objetos
+         _.assign(cue, cueOb);
 
-      // Cues.findOneById(req.param('id')).exec(function(err, cue){
-      //   sails.log(cue);
+         sails.log(cue);
       //   cue.setList=req.param('setList');
-      //   cue.save(sails.log.verbose);
-      //   return res.view('cues');
-      // });
+       cue.save(sails.log.verbose);
+        return res.view('todos');
+       });
 
    },
 

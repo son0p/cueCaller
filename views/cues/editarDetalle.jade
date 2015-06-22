@@ -3,7 +3,7 @@ block body
   h1 Detalle
   .jumbotron.hero-spacer
     form(role="form", method="POST", action="/cues/editarDetalle/#{cues.id}")
-      input.form-control(type="text", value="#{cues.talent}")
-      input.form-control(type="text", value="#{cues.song}")
-      input.form-control(type="text", value="#{cues.setList}")
-      input(type="submit", value="Guardar", name="crear")
+      input.form-control(type="text", value="#{cues.talent}", name="talent")
+      input.form-control(type="text", value="#{cues.song}", name="song")
+      input.form-control(type="text", value="#{cues.setList}", name="setList")
+      input(type="submit", value="Guardar")
