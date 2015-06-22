@@ -52,6 +52,7 @@ module.exports.routes = {
   'get /cues/todos': 'CuesController.todos',
   'get /cues/detalle': 'CuesController.detalle',
   'get /cues/editarDetalle/:id': 'CuesController.editarDetalle',
+  'post /cues/editarDetalle/:id?': 'CuesController.updateDetalle',
   'get /cues/editarSet': 'CuesController.editarSet',
   'post /cues/editarSet': 'CuesController.updateSet'
 

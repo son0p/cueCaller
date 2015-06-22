@@ -18,16 +18,23 @@ module.exports = {
       });
     },
    editarDetalle : function(req, res){
-    Cues.findOneById(req.param('id')).exec(function(err, cue){
-      res.view('cues/editarDetalle',{cues : cue});
+     Cues.findOneById(req.param('id')).exec(function(err, cue){
+      res.render('cues/editarDetalle',{cues : cue});
       });
     },
-   update : function(req, res){
-     sails.log(req.body);
-      Cues.update(req.body).exec(function(err, cue){
-     res.render('cues/update/', {cues: cue});
-     });
-    },
+   updateDetalle : function(req, res){
+     sails.log('entro UUpdate');
+     sails.log.verbose(req);
+
+      // Cues.findOneById(req.param('id')).exec(function(err, cue){
+      //   sails.log(cue);
+      //   cue.setList=req.param('setList');
+      //   cue.save(sails.log.verbose);
+      //   return res.view('cues');
+      // });
+
+   },
+
   editarSet : function(req, res){
     Cues.find().sort({setList: 1}).exec(function(err, cue){
       res.view('cues/editarSet', {cues: cue});
