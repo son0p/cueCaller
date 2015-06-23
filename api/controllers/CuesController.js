@@ -8,12 +8,17 @@
 module.exports = {
 	todos : function(req, res){
    // return res.json();
-    Cues.find().sort({setList: 1}).exec(function(err, cue){
+    Cues.find().where({talent:"fonseca"}).sort({setList: 1}).exec(function(err, cue){
+       if (err) {
+           sails.log.verbose("No se encontraron Cues de ese talento");
+           return res.send(err);
+         } // TODO: no me está mostrando este error
       res.view('cues/todos', {cues : cue});
     });
   },
    detalle : function(req, res){
     Cues.findOneById(req.param('id')).exec(function(err, cue){
+       sails.log.verbose(cue);
       res.view('cues/detalle',{cues : cue});
       });
     },

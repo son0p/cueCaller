@@ -2,14 +2,16 @@ extends ../layout
 block body
   .jumbotron.hero-spacer
     .row
-      h1 Fonseca
+      h1 Cues
       table.table
         tbody
           each cue in cues
             tr
               td
-                h2   #{cue.song}
+                h2   #{cue.song} #{cue.setList}
+                  small  #{cue.talent}
                 small #{cue.id}
+                a(href='editarDetalle/#{cue.id}')    editar
               td
                 -var json = JSON.stringify(cue.cue)
                 -var parse = JSON.parse(json)
