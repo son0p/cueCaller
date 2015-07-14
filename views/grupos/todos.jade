@@ -1,14 +1,17 @@
 extends ../layout
 block body
-  h1 Grupos Medellin
-  table
-    tbody
-      each grupos in groups
-        tr
-          td #{grupos.nombre}
-          td #{grupos.genero}
-          td #{grupos.id}
-          td
-            a.btn.btn-sm.btn-success(href='/grupos/detalle/#{grupos.id}') Detalle
-            td __
-              a.btn.btn-sm.btn-danger(href='/grupos/destruir/#{grupos.id}') Borrar
+  .jumbotron.hero-spacer
+      .row
+         h1 Grupos Medellin
+         table
+             tbody
+             each grupos in groups
+                  tr
+                    td #{grupos.nombre}
+                    td #{grupos.genero}
+                    td
+                      a.btn.btn-sm.btn-success(href='/grupos/detalle/#{grupos.id}') Detalle
+                    td
+                      small #{grupos.id}
+                    td ==
+                      a.btn.btn-sm.btn-danger(href='/grupos/destruir/#{grupos.id}') Borrar

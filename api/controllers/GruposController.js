@@ -19,9 +19,18 @@ module.exports = {
     },
 
   destruir : function(req, res){
-    Grupos.destroy(req.param('id'));
-    sails.log(req.param('id')+" destruido");
-    },
+    Grupos.destroy(req.param('id')).exec(function(err, groups){
+      if (err){
+        sails.log.verbose(err);
+        req.flash('message','Error');
+        return res.send(err);
+      }
+       sails.log(req.param('id')+" destruido");
+      //req.flash('message', 'success');
+      res.view('grupos/todos',{groups : groups});
+
+    });
+  },
 
   sinGenero :function(req, res){
     Grupos.find({genero:"NA"}).sort({nombre: 1}).exec(function(err, groups){
