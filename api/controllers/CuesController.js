@@ -8,7 +8,7 @@
 module.exports = {
 	todos : function(req, res){
    // return res.json();
-    Cues.find().where({talent:"fonseca"}).sort({setList: 1}).exec(function(err, cue){
+    Cues.find().where({talent:"latoma"}).sort({setList: 1}).exec(function(err, cue){
        if (err) {
            sails.log.verbose("No se encontraron Cues de ese talento");
            return res.send(err);

@@ -45,6 +45,8 @@ module.exports.routes = {
   'get /grupos/sinGenero': 'GruposController.sinGenero',
   'get /grupos/porGenero': 'GruposController.porGenero',
   'get /grupos/detalle/:id': 'GruposController.detalle',
+  'get /grupos/editarDetalle/:id': 'GruposController.editarDetalle',
+  'post /grupos/editarDetalle/:id?': 'GruposController.updateDetalle',
   'get /grupos/crear': 'GruposController.nuevo',
   'get /grupos/crear': 'GruposController.crear',
   'post /grupos/crear': 'GruposController.crear',

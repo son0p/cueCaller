@@ -1,0 +1,21 @@
+extends ../layout
+block body
+  .jumbotron.hero-spacer
+    .row
+      h1 Editar grupo
+      form(role="form", method="POST", action="/grupos/editarDetalle/#{grupos.id}")
+        fieldset .col-md-15
+        label.cotrol-label(for="Nombre") Nombre:
+        input.form-control(type="text", value="#{grupos.nombre}", name="nombre", placeholder="Nombre")
+        label.cotrol-label(for="Genero") Genero:
+        input.form-control(type="text", value="#{grupos.genero}", name="genero", placeholder="Genero")
+        label.cotrol-label(for="Subgenero") Sub-Genero:
+        input.form-control(type="text", value="#{grupos.subgenero}", name="subgenero", placeholder="Subgenero")
+        label.cotrol-label(for="Subgenero2") Sub-Genero2:
+        input.form-control(type="text", value="#{grupos.subgenero2}", name="subgenero2", placeholder="Subgenero2")
+        label.cotrol-label(for="Tags") Tags:
+        input.form-control(type="text", value="#{grupos.tags}", name="tags", placeholder="Tags")
+
+
+        input(type="submit", value="Guardar")
+        //input.btn.btn-lg.btn-primary.btn-block(type="submit", value="Guardar")

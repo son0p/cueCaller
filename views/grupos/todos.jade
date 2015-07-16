@@ -3,15 +3,19 @@ block body
   .jumbotron.hero-spacer
       .row
          h1 Grupos Medellin
+         .row
+           a.btn.btn-small.btn-success(href='/grupos/nuevo') Insertar
          table
              tbody
-             each grupos in groups
-                  tr
-                    td #{grupos.nombre}
-                    td #{grupos.genero}
-                    td
-                      a.btn.btn-sm.btn-success(href='/grupos/detalle/#{grupos.id}') Detalle
-                    td
-                      small #{grupos.id}
-                    td ==
-                      a.btn.btn-sm.btn-danger(href='/grupos/destruir/#{grupos.id}') Borrar
+               each grupos in groups
+                tr
+                  td #{grupos.nombre}
+                  td #{grupos.genero}
+                  td
+                    a.btn.btn-link.btn-primary(href='/grupos/detalle/#{grupos.id}') Detalle
+                  td
+                    a.btn.btn-link.btn-warning(href='/grupos/editarDetalle/#{grupos.id}') Editar
+                  td
+                    small &nbsp &nbsp  #{grupos.id} &nbsp  &nbsp
+                  td
+                    a.btn.btn-mini.btn-danger(href='/grupos/destruir/#{grupos.id}') Borrar
