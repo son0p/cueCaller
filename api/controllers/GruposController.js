@@ -37,7 +37,8 @@ module.exports = {
        genero : req.param('genero'),
        subgenero : req.param('subgenero'),
        subgenero2 : req.param('subgenero2'),
-       tags : req.param('tags')
+       tags : req.param('tags'),
+       apariciones : req.param('apariciones')
      };
        Grupos.findOneById(req.param('id')).exec(function(err, item){
          if (err) {

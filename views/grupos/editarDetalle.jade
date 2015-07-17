@@ -15,6 +15,8 @@ block body
         input.form-control(type="text", value="#{grupos.subgenero2}", name="subgenero2", placeholder="Subgenero2")
         label.cotrol-label(for="Tags") Tags:
         input.form-control(type="text", value="#{grupos.tags}", name="tags", placeholder="Tags")
+        label.cotrol-label(for="Apariciones") Apariciones  ej: {"fecha":1437158112, "venue":"Colombo Americano", "geoSitio":"6.209916, -75.569923", "capacidad":"200", "aforo%":"90", "evento":"El Suiche", "%importancia":"100"}
+        input.form-control(type="text", value="#{grupos.apariciones}", name="apariciones", placeholder="Apariciones")
 
 
         input(type="submit", value="Guardar")
