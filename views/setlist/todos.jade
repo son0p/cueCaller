@@ -1,0 +1,32 @@
+extends ../layout
+block body
+  .jumbotron.hero-spacer
+    .row
+      h1 Repertorios
+      ul.nav.nav-tabs
+        li
+          a(href="todos") Listado
+        li
+          a(href="agruparTempo") Agrupar Tempos
+        li
+          a(href="agruparTonalidad") Agrupar Tonalidad
+      table.table
+        tbody
+          each item in cues
+            tr
+              td
+                h3   #{item.setList} #{item.song}
+                h4 Tempo: #{item.bpm}bpm, Tonalidad: #{item.key}
+                  small  #{item.talent}
+                small #{item.id}
+                a(href='editarDetalle/#{item.id}')    editar
+              td Musicos
+                -var json = JSON.stringify(item.cue)
+                -var parse = JSON.parse(json)
+                  each val, key in parse
+                    .text-success #{key} <kbd> #{val}</kbd>
+              td Director
+                -var json = JSON.stringify(item.cueConductor)
+                -var parse = JSON.parse(json)
+                  each val, key in parse
+                    .text-success #{key} <kbd> #{val}</kbd>

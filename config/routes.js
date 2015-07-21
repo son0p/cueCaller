@@ -56,7 +56,9 @@ module.exports.routes = {
   'get /cues/editarDetalle/:id': 'CuesController.editarDetalle',
   'post /cues/editarDetalle/:id?': 'CuesController.updateDetalle',
   'get /cues/editarSet': 'CuesController.editarSet',
-  'post /cues/editarSet': 'CuesController.updateSet'
+  'post /cues/editarSet': 'CuesController.updateSet',
+  'get /composition' : 'CompositionController.todos',
+    'get /setlist' : 'setlist.todos'
 
   //'get /group2': 'Group2Controller.findAll',
   //'get /group2/sinGenero': 'Group2Controller.sinGenero'
