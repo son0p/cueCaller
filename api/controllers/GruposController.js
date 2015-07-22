@@ -15,6 +15,16 @@ module.exports = {
       console.log('Hay ' + found + ' Grupos"');
       });
   },
+  	filtro : function(req, res){
+      Grupos.find().sort({nombre: 1}).exec(function(err, groups){
+      res.view('grupos/todos', {groups : groups});
+    });
+    Grupos.count().exec(function countCB(error, found) {
+      console.log('Hay ' + found + ' Grupos"');
+      });
+  },
+
+
    detalle : function(req, res){
     Grupos.findOneById(req.param('id')).exec(function(err, groups){
       res.view('grupos/detalle',{groups : groups});
@@ -50,7 +60,8 @@ module.exports = {
 
          sails.log(item);
          item.save(sails.log.verbose);
-         return res.view('todos');
+         // return res.view('grupos/todos');
+         res.redirect('grupos/todos');
        });
    },
 

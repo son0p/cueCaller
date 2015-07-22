@@ -58,7 +58,9 @@ module.exports.routes = {
   'get /cues/editarSet': 'CuesController.editarSet',
   'post /cues/editarSet': 'CuesController.updateSet',
   'get /composition' : 'CompositionController.todos',
-    'get /setlist' : 'setlist.todos'
+  'get /setlist' : 'setlist.todos',
+  'get /api/grupos/apariciones' : 'ApiController.apariciones'
+
 
   //'get /group2': 'Group2Controller.findAll',
   //'get /group2/sinGenero': 'Group2Controller.sinGenero'
