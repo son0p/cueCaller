@@ -3,6 +3,15 @@ block body
   .jumbotron.hero-spacer
       .row
          h1 Grupos Medellin
+         ul.nav.nav-tabs
+          li
+            a(href="todos") Listado
+          li
+            a(href="porGenero") Por Género
+          li
+            a(href="sinGenero") Sin Género
+          li
+            a(href="objeto") Objeto
          .row
            a.btn.btn-small.btn-success(href='/grupos/nuevo') Insertar
          table
@@ -19,3 +28,4 @@ block body
                     small &nbsp &nbsp  #{grupos.id} &nbsp  &nbsp
                   td
                     a.btn.btn-mini.btn-danger(href='/grupos/destruir/#{grupos.id}') Borrar
+                  td #{grupos.apariciones}

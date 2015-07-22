@@ -81,15 +81,21 @@ module.exports = {
 
   sinGenero :function(req, res){
     Grupos.find({genero:"NA"}).sort({nombre: 1}).exec(function(err, groups){
-      res.view('grupos/sinGenero', {groups : groups});
+      res.view('grupos/todos', {groups : groups});
     });
     },
 
   porGenero :function(req, res){
     Grupos.find().sort({genero: 1}).exec(function(err, groups){
-      res.view('grupos/porGenero', {groups : groups});
+      res.view('grupos/todos', {groups : groups});
     });
   },
+
+   objeto :function(req, res){
+    Grupos.find({apariciones:"[object Object]"}).sort({nombre: 1}).exec(function(err, groups){
+      res.view('grupos/todos', {groups : groups});
+    });
+    },
   nuevo : function(req, res){
     res.view('grupos/nuevo');
     sails.log("nuevo");
