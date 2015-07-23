@@ -1,6 +1,6 @@
 extends ../layout
 block body
-  h1 Detalle
+  h3 Detalle
   .jumbotron.hero-spacer
     form(role="form", method="POST", action="/cues/editarDetalle/#{cues.id}")
       input.form-control(type="text", value="#{cues.talent}", name="talent")
