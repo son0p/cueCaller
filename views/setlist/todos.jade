@@ -30,3 +30,8 @@ block body
                 -var parse = JSON.parse(json)
                   each val, key in parse
                     .text-success #{key} <kbd> #{val}</kbd>
+              td Profesor
+                -var json = JSON.stringify(item.cueTeacher)
+                -var parse = JSON.parse(json)
+                  each val, key in parse
+                    .text-success #{key} <kbd> #{val}</kbd>
