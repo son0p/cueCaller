@@ -7,7 +7,7 @@ var S = require('string');
 
 var SCOPES = ['https://www.googleapis.com/auth/calendar.readonly'];
 var TOKEN_DIR = (process.env.HOME || process.env.HOMEPATH ||
-    process.env.USERPROFILE) + '/.credentials/';
+    process.env.USERPROFILE) + '.credentials/';
 var TOKEN_PATH = TOKEN_DIR + 'calendar-api-quickstart.json';
 
 
