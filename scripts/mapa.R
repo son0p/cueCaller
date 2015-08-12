@@ -4,36 +4,46 @@ require(jsonlite)
 require(leaflet)
 require(stringr)
 
-grupos <- fromJSON("http://192.168.1.43:25050/api/grupos/apariciones")
+grupos <- fromJSON("http://cuecaller.son0p.net/api/grupos/apariciones")
 
+## Para ver la estructura del objeto
 str(grupos)
 
-apariciones_grupo <- function(apariciones) {
-    unlist(apariciones)
-}
+## Para ver los nombres del contenido del objeto, que puede ser columnas u otros objetos
+names(grupos) # Corresponden con los nombres y el índice
 
-grupos_apariciones <- lapply(grupos$apariciones, function(x) apariciones_grupo(x))
+## Para acceder a los elementos de un objeto se puede usar $masnombredecolumna
+grupos[1:2,c(20,12)]
 
-grupos_apariciones[unlist(lapply(grupos_apariciones, is.null))] <- "null"
+grupos[1:2,c("nombre","facebook")]
 
-apariciones <- unlist(grupos_apariciones)
-apariciones[apariciones == "[object Object]"] <- "null"
+# Para ver la longitud se usa length
+length(grupos[1:2,c("nombre","facebook")])
 
-lapply(apariciones, function(x) fromJSON(x))
+length(grupos[1:20,c("nombre","facebook")])
 
-grupos.mapas <- cbind(grupos[,c("nombre","genero")],unlist(grupos_apariciones))
+length(grupos[1:20,c("nombre")])
 
-colnames(grupos.mapas) <- c("nombre","genero","apariciones")
+grupos$`nombre con espacios y tíldes` #Para poder acceder a columnas con se usan las tildes invertidas
 
-marker <- str_split(fromJSON(grupos.mapas$apariciones)$geoSitio,",")
+## Si no pongo nada en el campo de col o row se trae todo lo que hay
+apariciones <- grupos[,c("nombre","apariciones")]
+str(apariciones)
 
+## lapply permite aplicar una función a una lista
+apariciones$apariciones[unlist(lapply(apariciones$apariciones, is.null))] <- "null"
+
+apariciones_ev <- unlist(apariciones$apariciones)
+
+########################
+## Generar mapa a partir de los archivos de geojson en el repositorio github.com/son0p/mapasGrupos
+########################
+masacre <- fromJSON("https://raw.githubusercontent.com/son0p/mapasGrupos/master/masacre.geojson")
+
+## http://rstudio.github.io/leaflet/json.html
 m <- leaflet() %>%
-    addTiles() %>%
-        addMarkers(lng=as.numeric(marker[2]), lat=as.numeric(marker[1]), popup="The birthplace of R")
+    addProviderTiles("Stamen.Toner") %>%
+    addGeoJSON(toJSON(masacre))
+m  # Print the map
 
 htmlwidgets::saveWidget(m, "./mapa.html")
-
-m <- leaflet() %>%
-  addTiles() %>%  # Add default OpenStreetMap map tiles
-  addMarkers(lng=174.768, lat=-36.852, popup="The birthplace of R")
-m  # Print the map
