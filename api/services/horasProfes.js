@@ -6,8 +6,7 @@ var S = require('string');
 //var _= require('lodash');
 
 var SCOPES = ['https://www.googleapis.com/auth/calendar.readonly'];
-var TOKEN_DIR = (process.env.HOME || process.env.HOMEPATH ||
-    process.env.USERPROFILE) + '.credentials/';
+var TOKEN_DIR =  '/home/ff/projects/cueCaller/.credentials/';
 var TOKEN_PATH = TOKEN_DIR + 'calendar-api-quickstart.json';
 
 
@@ -40,7 +39,7 @@ authorize:function (credentials, callback) {
   // Check if we have previously stored a token.
   fs.readFile(TOKEN_PATH, function(err, token) {
     if (err) {
-      getNewToken(oauth2Client, callback);
+      module.exports.getNewToken(oauth2Client, callback);
     } else {
       oauth2Client.credentials = JSON.parse(token);
       callback(oauth2Client);
@@ -74,7 +73,7 @@ authorize:function (credentials, callback) {
         return;
       }
       oauth2Client.credentials = token;
-      storeToken(token);
+      module.exports.storeToken(token);
       callback(oauth2Client);
     });
   });
@@ -145,7 +144,7 @@ storeToken:function (token) {
       var conteo = _.map(arregloProfes, cuentaNombres);
       arregloProfes.forEach(function(profe, i){
        console.log(profe,conteo[i]);
-        fs.appendFile("assets/profes.txt", profe + ","+ conteo[i]+"\n", function(err){
+        fs.appendFile(".tmp/public/profes.txt", profe + ","+ conteo[i]+"\n", function(err){
           if(err) {
             return console.log(err);
           }
