@@ -8,6 +8,9 @@ var S = require('string');
 var SCOPES = ['https://www.googleapis.com/auth/calendar.readonly'];
 var TOKEN_DIR =  '/home/ff/projects/cueCaller/.credentials/';
 var TOKEN_PATH = TOKEN_DIR + 'calendar-api-quickstart.json';
+var today = new Date();
+var weekAhead = new Date(today);
+weekAhead.setDate(today.getDate()+7);
 
 
 // // Load client secrets from a local file.
@@ -108,8 +111,10 @@ storeToken:function (token) {
   calendar.events.list({
     auth: auth,
     calendarId: '0f0n9volku8u02t6dc185uvv24@group.calendar.google.com',
-    timeMin: (new Date()).toISOString(),
-    maxResults: 10,
+    //timeMin: (new Date()).toISOString(),
+    timeMin: today.toISOString(),
+    timeMax: weekAhead.toISOString(),
+    maxResults: 30,
     singleEvents: true,
     orderBy: 'startTime'
   }, function(err, response) {
@@ -121,7 +126,7 @@ storeToken:function (token) {
     if (events.length == 0) {
       console.log('No upcoming events found.');
     } else {
-      console.log('Upcoming 10 events:');
+      console.log('Upcoming events:');
       var todosLosEventos = "";
       for (var i = 0; i < events.length; i++) {
         var event = events[i];
@@ -140,15 +145,15 @@ storeToken:function (token) {
       function cuentaNombres(nombre){
         return S(todosLosEventos).count(nombre);
         }
-      var arregloProfes = ["Adri","Ligia","Tiby"];
+      var arregloProfes = ["Adri","Ligia","Tiby", "Andre", "AnaLu"];
       var conteo = _.map(arregloProfes, cuentaNombres);
+      fs.writeFile(".tmp/public/profes.txt", '');
       arregloProfes.forEach(function(profe, i){
        console.log(profe,conteo[i]);
-        fs.appendFile(".tmp/public/profes.txt", profe + ","+ conteo[i]+"\n", function(err){
+        fs.appendFile(".tmp/public/profes.txt", profe + ","+ conteo[i]+","+new Date()+"\n", function(err){
           if(err) {
             return console.log(err);
           }
-
           console.log("The file was saved!");
         });
       });
