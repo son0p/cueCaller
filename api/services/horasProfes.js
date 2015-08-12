@@ -153,7 +153,7 @@ storeToken:function (token) {
           console.log("The file was saved!");
         });
       });
-      fs.close();
+
     }
   });
 }
