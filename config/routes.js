@@ -51,6 +51,10 @@ module.exports.routes = {
   'get /grupos/crear': 'GruposController.crear',
   'post /grupos/crear': 'GruposController.crear',
   'post /grupos/nuevo': 'GruposController.nuevo',
+  'get /cues/crear': 'CuesController.nuevo',
+  'get /cues/crear': 'CuesController.crear',
+  'post /cues/crear': 'CuesController.crear',
+  'post /cues/nuevo': 'CuesController.nuevo',
   'get /cues/todos': 'CuesController.todos',
   'get /cues/detalle': 'CuesController.detalle',
   'get /cues/editarDetalle/:id': 'CuesController.editarDetalle',
@@ -59,7 +63,8 @@ module.exports.routes = {
   'post /cues/editarSet': 'CuesController.updateSet',
   'get /composition' : 'CompositionController.todos',
   'get /setlist' : 'setlist.todos',
-  'get /api/grupos/apariciones' : 'ApiController.apariciones'
+  'get /api/grupos/apariciones' : 'ApiController.apariciones',
+  'get /calendar': 'Calendar.totalProfes'
 
 
   //'get /group2': 'Group2Controller.findAll',

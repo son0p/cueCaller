@@ -1,9 +1,23 @@
 extends ../layout
 block body
-  h3 Detalle
   .jumbotron.hero-spacer
-    form(role="form", method="POST", action="/cues/editarDetalle/#{cues.id}")
-      input.form-control(type="text", value="#{cues.talent}", name="talent")
-      input.form-control(type="text", value="#{cues.song}", name="song")
-      input.form-control(type="text", value="#{cues.setList}", name="setList")
-      input(type="submit", value="Guardar")
+    .row
+      h3 Editar grupo
+      form(role="form", method="POST", action="/grupos/editarDetalle/#{grupos.id}")
+        fieldset .col-md-15
+        label.cotrol-label(for="Nombre") Nombre:
+        input.form-control(type="text", value="#{grupos.nombre}", name="nombre", placeholder="Nombre")
+        label.cotrol-label(for="Genero") Genero:
+        input.form-control(type="text", value="#{grupos.genero}", name="genero", placeholder="Genero")
+        label.cotrol-label(for="Subgenero") Sub-Genero:
+        input.form-control(type="text", value="#{grupos.subgenero}", name="subgenero", placeholder="Subgenero")
+        label.cotrol-label(for="Subgenero2") Sub-Genero2:
+        input.form-control(type="text", value="#{grupos.subgenero2}", name="subgenero2", placeholder="Subgenero2")
+        label.cotrol-label(for="Tags") Tags:
+        input.form-control(type="text", value="#{grupos.tags}", name="tags", placeholder="Tags")
+        label.cotrol-label(for="Apariciones") Apariciones  ej: {"fecha":1437158112, "venue":"Colombo Americano", "geometry":{"type": "Point", "coordinates":[75.57168960571289,6.201994754217926]}, "capacidad":"200", "aforo%":"90", "evento":"El Suiche", "%importancia":"100"}  # sacar coordenadas de http://geojson.io/
+        input.form-control(type="text", value="#{grupos.apariciones}", name="apariciones", placeholder="Apariciones")
+
+
+        input(type="submit", value="Guardar")
+        //input.btn.btn-lg.btn-primary.btn-block(type="submit", value="Guardar")

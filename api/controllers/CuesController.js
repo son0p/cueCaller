@@ -8,7 +8,7 @@
 module.exports = {
 	todos : function(req, res){
    // return res.json();
-    Cues.find().where({talent:"bigband"}).sort({setList: 1}).exec(function(err, cue){
+    Cues.find().where({talent:"mvlm"}).sort({setList: 1}).exec(function(err, cue){
        if (err) {
            sails.log.verbose("No se encontraron Cues de ese talento");
            return res.send(err);
@@ -82,17 +82,17 @@ module.exports = {
   },
   nuevo : function(req, res){
     res.view('cues/nuevo');
-    sails.log("nuevo");
+    sails.log("new");
     },
   crear : function(req, res){
-    sails.log("entro");
-    Cues.create(req.body).exec(function(err, grupo){
+    sails.log("innn");
+    Cues.create(req.body).exec(function(err, cues){
       if (err){
         sails.log.verbose(err);
         req.flash('message','Error');
         return res.send(err);
       }
-      res.json(grupo);
+      res.json(cues);
       });
     }
 
