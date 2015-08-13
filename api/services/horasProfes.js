@@ -4,6 +4,10 @@ var google = require('googleapis');
 var googleAuth = require('google-auth-library');
 var S = require('string');
 //var _= require('lodash');
+var calendars = ["0f0n9volku8u02t6dc185uvv24@group.calendar.google.com","d7ndgg3orqrt4nfqtp280ekuio@group.calendar.google.com","10l5sgmgtqmvj39rslh6fjbceg@group.calendar.google.com" ];
+var calendarNames =["Buen Comienzo", "Casas y Nodos", "Instituciones Educativas"];
+
+
 
 var SCOPES = ['https://www.googleapis.com/auth/calendar.readonly'];
 var TOKEN_DIR =  '/home/ff/projects/cueCaller/.credentials/';
@@ -107,58 +111,64 @@ storeToken:function (token) {
 
 
   listEvents: function (auth) {
-  var calendar = google.calendar('v3');
-  calendar.events.list({
-    auth: auth,
-    calendarId: '0f0n9volku8u02t6dc185uvv24@group.calendar.google.com',
-    //timeMin: (new Date()).toISOString(),
-    timeMin: today.toISOString(),
-    timeMax: weekAhead.toISOString(),
-    maxResults: 30,
-    singleEvents: true,
-    orderBy: 'startTime'
-  }, function(err, response) {
-    if (err) {
-      console.log('The API returned an error: ' + err);
-      return;
-    }
-    var events = response.items;
-    if (events.length == 0) {
-      console.log('No upcoming events found.');
-    } else {
-      console.log('Upcoming events:');
-      var todosLosEventos = "";
-      for (var i = 0; i < events.length; i++) {
-        var event = events[i];
-        var start = event.start.dateTime || event.start.date;
-        //console.log('%s - %s', start, event.summary);
-        //console.log(event);
-        //console.log(event.summary);
-        // mas igual es incluyame a mi mismo en la suma
-        todosLosEventos += " " + event.summary;
-      }
-      //console.log(todosLosEventos);
-      var adri =  S(todosLosEventos).count("Adri");
-      // aca puedo multiplicar por el numero de horas
-      // console.log("Adri = ",adri);
-
-      function cuentaNombres(nombre){
-        return S(todosLosEventos).count(nombre);
+    fs.writeFile(".tmp/public/profes.txt", '');//limpia el archivo
+    calendars.forEach(function(calendarItem, i){
+      console.log(calendars[i]);
+      console.log(calendarNames[i]);
+      var calendarName = calendarNames[i];
+      var calendar = google.calendar('v3');
+      calendar.events.list({
+        auth: auth,
+        calendarId: calendars[i],
+        //timeMin: (new Date()).toISOString(),
+        timeMin: today.toISOString(),
+        timeMax: weekAhead.toISOString(),
+        maxResults: 30,
+        singleEvents: true,
+        orderBy: 'startTime'
+      }, function(err, response) {
+        if (err) {
+          console.log('The API returned an error: ' + err);
+          return;
         }
-      var arregloProfes = ["Adri","Ligia","Tiby", "Andre", "AnaLu"];
-      var conteo = _.map(arregloProfes, cuentaNombres);
-      fs.writeFile(".tmp/public/profes.txt", '');
-      arregloProfes.forEach(function(profe, i){
-       console.log(profe,conteo[i]);
-        fs.appendFile(".tmp/public/profes.txt", profe + ","+ conteo[i]+","+new Date()+"\n", function(err){
-          if(err) {
-            return console.log(err);
+        var events = response.items;
+        if (events.length == 0) {
+          console.log('No upcoming events found.');
+        } else {
+          console.log('Totales profesores'+ " "+ calendarName);
+          var todosLosEventos = "";
+          for (var i = 0; i < events.length; i++) {
+            var event = events[i];
+            var start = event.start.dateTime || event.start.date;
+            //console.log('%s - %s', start, event.summary);
+            //console.log(event);
+            //console.log(event.summary);
+            // mas igual es incluyame a mi mismo en la suma
+            todosLosEventos += " " + event.summary;
           }
-          console.log("The file was saved!");
-        });
-      });
+          //console.log(todosLosEventos);
+          var adri =  S(todosLosEventos).count("Adri");
+          // aca puedo multiplicar por el numero de horas
+          // console.log("Adri = ",adri);
 
-    }
-  });
-}
+          function cuentaNombres(nombre){
+            return S(todosLosEventos).count(nombre);
+          }
+          var arregloProfes = ["Adri", "AnaLu","AnaMa", "Andre","Cami", "Carlos", "EBeta", "Eider", "EPoga", "Jose", "JRafael","Julian", "JuliC","Ligia","MClara", "Meli","Tiby", "Tomy", "Yeisme", "Yeison"];
+          var conteo = _.map(arregloProfes, cuentaNombres);
+
+          fs.appendFile(".tmp/public/profes.txt", "Profe" + "," + calendarName + "\n");
+          arregloProfes.forEach(function(profe, i){
+            console.log(profe,conteo[i]);
+            fs.appendFile(".tmp/public/profes.txt", profe + ","+ conteo[i]+"\n", function(err){
+              if(err) {
+                return console.log(err);
+              }
+            });
+          });
+          console.log("Hecho!");
+        }
+      });
+    });
+  }
 };
