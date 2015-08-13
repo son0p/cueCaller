@@ -10,7 +10,8 @@ var calendarNames =["Buen Comienzo", "Casas y Nodos", "Instituciones Educativas"
 
 
 var SCOPES = ['https://www.googleapis.com/auth/calendar.readonly'];
-var TOKEN_DIR =  '/home/ff/projects/cueCaller/.credentials/';
+//var TOKEN_DIR =  '/home/ff/projects/cueCaller/.credentials/';
+var TOKEN_DIR = '/home/fede2001/webapps/cuecaller_son0p/cueCaller/.credentials/';  //server
 var TOKEN_PATH = TOKEN_DIR + 'calendar-api-quickstart.json';
 var today = new Date();
 var weekAhead = new Date(today);
