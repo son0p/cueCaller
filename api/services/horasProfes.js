@@ -10,8 +10,8 @@ var calendarNames =["Buen Comienzo", "Casas y Nodos", "Instituciones Educativas"
 
 
 var SCOPES = ['https://www.googleapis.com/auth/calendar.readonly'];
-//var TOKEN_DIR =  '/home/ff/projects/cueCaller/.credentials/';
-var TOKEN_DIR = '/home/fede2001/webapps/cuecaller_son0p/cueCaller/.credentials/';  //server
+var TOKEN_DIR =  '/home/ff/projects/cueCaller/.credentials/';
+//var TOKEN_DIR = '/home/fede2001/webapps/cuecaller_son0p/cueCaller/.credentials/';  //server
 var TOKEN_PATH = TOKEN_DIR + 'calendar-api-quickstart.json';
 var today = new Date();
 var weekAhead = new Date(today);
@@ -133,6 +133,8 @@ storeToken:function (token) {
           return;
         }
         var events = response.items;
+        // voy a http://jsonviewer.stack.hu/ y veo los nombres de lo que tengo que restar
+        fs.appendFile(".tmp/public/todo.json", JSON.stringify(events));
         if (events.length == 0) {
           console.log('No upcoming events found.');
         } else {
@@ -142,7 +144,7 @@ storeToken:function (token) {
             var event = events[i];
             var start = event.start.dateTime || event.start.date;
             //console.log('%s - %s', start, event.summary);
-            //console.log(event);
+//            console.log(event);
             //console.log(event.summary);
             // mas igual es incluyame a mi mismo en la suma
             todosLosEventos += " " + event.summary;
@@ -153,9 +155,11 @@ storeToken:function (token) {
           // console.log("Adri = ",adri);
 
           function cuentaNombres(nombre){
+            // con el paquete string cuenta el nombre de todos los eventos
             return S(todosLosEventos).count(nombre);
           }
-          var arregloProfes = ["Adri", "AnaLu","AnaMa", "Andre","Cami", "Carlos", "EBeta", "Eider", "EPoga", "Jose", "JRafael","Julian", "JuliC","Ligia","MClara", "Meli","Tiby", "Tomy", "Yeisme", "Yeison"];
+          var arregloProfes = ["Adri","Alejo", "AnaLu","AnaMa", "Andre","Cami", "Carlos", "Clau","EBeta","Edwar", "Eider", "EPoga", "Jose", "JRafael","Julian", "JuliC","Laura","Leo","Ligia","MClara", "Meli","Tiby", "Tomy", "Yeisme", "Yeison"];
+          // map me sirve para que a cada item del array arreglo profes hagale la fcunción cuentaNomres
           var conteo = _.map(arregloProfes, cuentaNombres);
 
           fs.appendFile(".tmp/public/profes.txt", "Profe" + "," + calendarName + "\n");
